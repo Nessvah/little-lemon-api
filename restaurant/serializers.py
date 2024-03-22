@@ -1,12 +1,17 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, FloatField
 from django.contrib.auth.models import User
 from .models import MenuTable, Booking
 
 
 class MenuSerializer(ModelSerializer):
+
+    # the price is appearing as string when we send the data
+    # but we can override it here
+    price = FloatField()
+
     class Meta:
         model = MenuTable
-        fields = ['title', 'price', 'inventory']
+        fields = ['id', 'title', 'price', 'inventory']
 
 
 class UserSerializer(ModelSerializer):
