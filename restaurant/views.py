@@ -29,7 +29,8 @@ class MenuItemView(ListCreateAPIView):
     def get_permissions(self):
         permission_classes = []
         if self.request.method == 'POST':
-            # if the request its a post only a user can access
+            print('damn')
+            # if the request it's a post only a user can access
             permission_classes = [IsAdminUser]
         # It iterates over each class in permission_classes, instantiates it,
         # and adds the instance to the list.

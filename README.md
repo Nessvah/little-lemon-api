@@ -8,18 +8,18 @@ Password -> admin@123!
 
 ## Endpoints for menu items and bookings
 
-| Endpoint           | URL                                          | Method     | Admin Permissions | User Permissions            |
-|--------------------|----------------------------------------------|------------|-------------------|-----------------------------|
-| List Bookings      | `/api/restaurant/bookings/`                  | GET        | Full access       | View own bookings           |
-| Create Booking     | `/api/restaurant/bookings/`                  | POST       | Full access       | Create own bookings         |
-| Retrieve Booking   | `/api/restaurant/bookings/<booking_id>/`     | GET        | Full access       | View own booking details    |
-| Update Booking     | `/api/restaurant/bookings/<booking_id>/`     | PUT, PATCH | Full access       | Update own booking details  |
-| Delete Booking     | `/api/restaurant/bookings/<booking_id>/`     | DELETE     | Full access       | Delete own bookings         |
-| List Menu Items    | `/api/restaurant/menu-items/`                | GET        | Full access       | View menu items             |
-| Create Menu Item   | `/api/restaurant/menu-items/`                | POST       | Full access       | No permission (only admins) |
-| Retrieve Menu Item | `/api/restaurant/menu-items/<menu_item_id>/` | GET        | Full access       | View menu items             |
-| Update Menu Item   | `/api/restaurant/menu-items/<menu_item_id>/` | PUT, PATCH | Full access       | No permission (only admins) |
-| Delete Menu Item   | `/api/restaurant/menu-items/<menu_item_id>/` | DELETE     | Full access       | No permission (only admins) |
+| Endpoint           | URL                                      | Method     | Admin Permissions | User Permissions            |
+|--------------------|------------------------------------------|------------|-------------------|-----------------------------|
+| List Bookings      | `/api/restaurant/bookings/`              | GET        | Full access       | View own bookings           |
+| Create Booking     | `/api/restaurant/bookings/`              | POST       | Full access       | Create own bookings         |
+| Retrieve Booking   | `/api/restaurant/bookings/<booking_id>/` | GET        | Full access       | View own booking details    |
+| Update Booking     | `/api/restaurant/bookings/<booking_id>/` | PUT, PATCH | Full access       | Update own booking details  |
+| Delete Booking     | `/api/restaurant/bookings/<booking_id>/` | DELETE     | Full access       | Delete own bookings         |
+| List Menu Items    | `/api/restaurant/menu/`                  | GET        | Full access       | View menu items             |
+| Create Menu Item   | `/api/restaurant/menu/`                  | POST       | Full access       | No permission (only admins) |
+| Retrieve Menu Item | `/api/restaurant/menu/<menu_item_id>/`   | GET        | Full access       | View menu items             |
+| Update Menu Item   | `/api/restaurant/menu/<menu_item_id>/`   | PUT, PATCH | Full access       | No permission (only admins) |
+| Delete Menu Item   | `/api/restaurant/menu/<menu_item_id>/`   | DELETE     | Full access       | No permission (only admins) |
 
 ## Endpoints for authentication
 

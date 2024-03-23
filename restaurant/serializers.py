@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer, FloatField
+from rest_framework.serializers import ModelSerializer, FloatField, PrimaryKeyRelatedField
 from django.contrib.auth.models import User
 from .models import MenuTable, Booking
 
@@ -21,6 +21,8 @@ class UserSerializer(ModelSerializer):
 
 
 class BookingSerializer(ModelSerializer):
+    user = PrimaryKeyRelatedField(queryset=User.objects.all())
+
     class Meta:
         model = Booking
-        fields = ['name', 'no_of_guests', 'booking_date']
+        fields = ['id', 'user', 'name', 'no_of_guests', 'booking_date']
