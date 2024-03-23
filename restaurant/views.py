@@ -4,7 +4,7 @@ from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIV
 from .serializers import UserSerializer, MenuSerializer, BookingSerializer
 from .models import MenuTable, Booking, User
 from rest_framework.permissions import IsAuthenticated
-from .permissions import IsOwnerOrAdmin
+from .permissions import IsOwnerOrAdmin, IsAdminOrStaffOrOwner
 
 
 def index(request):
@@ -61,7 +61,6 @@ class BookingView(ListCreateAPIView):
     def get_queryset(self):
         # get the user that is making the request
         user = self.request.user
-        print(user.is_staff)
         # check if the user is a staff and if it is,
         # can see all bookings
         if user.is_staff:
@@ -79,4 +78,6 @@ class BookingDetail(RetrieveUpdateDestroyAPIView):
     queryset = Booking.objects.all()
     serializer_class = BookingSerializer
 
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsAdminOrStaffOrOwner]
+
+
