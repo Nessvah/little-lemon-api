@@ -18,10 +18,8 @@ class IsOwnerOrAdmin(BasePermission):
         return False
 
     def has_object_permission(self, request, view, obj):
-        # allow only read and write access only to the owner of the booking
-        # or the admins
-        if request.method in ['GET', 'HEAD', 'OPTIONS'] and (obj.user == request.user or request.user.is_staff):
-            return True
-        if request.method in ['POST', 'PUT', 'DELETE'] and (obj.user == request.user or request.user.is_staff):
-            return True
-        return False
+        # Admin or staff can view any object
+        if request.user and request.user.is_authenticated:
+            return request.user.is_staff or request.user.is_superuser
+        # Otherwise, only the owner can view the object
+        return obj.user == request.user

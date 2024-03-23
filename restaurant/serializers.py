@@ -1,6 +1,7 @@
-from rest_framework.serializers import ModelSerializer, FloatField, PrimaryKeyRelatedField
+from rest_framework.serializers import ModelSerializer, FloatField, CharField
 from django.contrib.auth.models import User
 from .models import MenuTable, Booking
+
 
 
 class MenuSerializer(ModelSerializer):
@@ -17,12 +18,13 @@ class MenuSerializer(ModelSerializer):
 class UserSerializer(ModelSerializer):
     class Meta:
         model = User
-        fields = ['username', 'email', 'url', 'groups']
+        fields = ['id', 'username', 'email', 'groups']
 
 
 class BookingSerializer(ModelSerializer):
-    user = PrimaryKeyRelatedField(queryset=User.objects.all())
+    # request.user will return the username and not the actual id
+    username = CharField(source='user.username', read_only=True)
 
     class Meta:
         model = Booking
-        fields = ['id', 'user', 'name', 'no_of_guests', 'booking_date']
+        fields = ['id', 'username', 'name', 'no_of_guests', 'booking_date']

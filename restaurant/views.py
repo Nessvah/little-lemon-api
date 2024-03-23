@@ -3,7 +3,8 @@ from django.shortcuts import render, get_object_or_404
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from .serializers import UserSerializer, MenuSerializer, BookingSerializer
 from .models import MenuTable, Booking, User
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
+from rest_framework.permissions import IsAuthenticated
+from .permissions import IsOwnerOrAdmin
 
 
 def index(request):
@@ -17,7 +18,6 @@ def home(request):
 # ListCreateAPIView is a generic view from drf that provides listing and
 # creation functionality for a resource
 class MenuItemView(ListCreateAPIView):
-
     # this will retrieve all objects from the database
     queryset = MenuTable.objects.all()
 
@@ -42,6 +42,7 @@ class MenuItemDetail(RetrieveUpdateDestroyAPIView):
     serializer_class = MenuSerializer
 
     def get_permissions(self):
+        print(self.request.user)
         permission_classes = []
         if self.request.method != 'GET':
             permission_classes = [IsAdminUser]
@@ -50,14 +51,32 @@ class MenuItemDetail(RetrieveUpdateDestroyAPIView):
 
 
 class BookingView(ListCreateAPIView):
-
     queryset = Booking.objects.all()
     serializer_class = BookingSerializer
 
-    # Users can only create and view their own bookings
+    # only authenticated users can access these views
+    permission_classes = [IsAuthenticated, IsOwnerOrAdmin]
+
+    # # Users can only view their own bookings unless they are admin
+    def get_queryset(self):
+        # get the user that is making the request
+        user = self.request.user
+        print(user.is_staff)
+        # check if the user is a staff and if it is,
+        # can see all bookings
+        if user.is_staff:
+            return Booking.objects.all()
+        else:
+            return Booking.objects.filter(user=user)
+
+    # while creating we need to associate the booking with the
+    # user who makes the request
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
 
 class BookingDetail(RetrieveUpdateDestroyAPIView):
     queryset = Booking.objects.all()
     serializer_class = BookingSerializer
 
+    permission_classes = [IsAuthenticated]
