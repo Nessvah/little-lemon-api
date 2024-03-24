@@ -15,37 +15,46 @@ This project is an API built using Django REST Framework for managing table book
 
 To run this project locally, follow these steps:
 
-1. Clone the repository:
+- Clone the repository:
 ```bash
 git clone https://github.com/Nessvah/little-lemon-api.git
 ```
-2. Navigate to the project directory:
+- Navigate to the project directory:
 ```bash
 cd little-lemon-api
 ```
 
-3. Install dependencies:
+- Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Run migrations to create the database schema:
+- Create MySQL database and user:
+
+```bash
+create database littlelemon;
+use littlelemon;
+CREATE USER 'admindjango'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON littlelemon.* TO 'admindjango'@'localhost';
+```
+
+- Run migrations to create the database schema:
 ```bash
 python manage.py migrate
 ```
 
-5. Create a superuser for accessing the Django admin interface and test the permissions for admins:
+- Create a superuser for accessing the Django admin interface and test the permissions for admins:
 ```bash
 python manage.py createsuperuser
 ```
 
-6. Start the development server:
+- Start the development server:
 ```bash
 python manage.py runserver
 ```
 
-7. Access the API at `http://localhost:800/api/`
-8. Access the Django admin interface at `http://localhost:8000/admin/` and log in using the credentials you created in step 5.
+- Access the API at `http://localhost:800/api/`
+- Access the Django admin interface at `http://localhost:8000/admin/` and log in using the credentials you created in step 5.
 
 ## Usage
 
