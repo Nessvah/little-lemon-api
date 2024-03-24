@@ -79,6 +79,26 @@ python manage.py runserver
 | Update Menu Item   | `/api/restaurant/menu/<menu_item_id>/`   | PUT, PATCH | Full access       | No permission (only admins) |
 | Delete Menu Item   | `/api/restaurant/menu/<menu_item_id>/`   | DELETE     | Full access       | No permission (only admins) |
 
+#### For creating bookings: 
+```json
+{
+	"name": "Aline",
+	"no_of_guests": "5",
+	"booking_date": "2024-02-11"
+}
+```
+
+#### For creating menu items
+
+ ```json
+{
+	"title": "Grilled fish",
+	"price": 16.99,
+	"inventory": 20
+}
+
+```
+
 ### Endpoints for authentication
 
 | Endpoint          | URL                                       | Method          | Description                                      | Permissions              |
@@ -88,6 +108,24 @@ python manage.py runserver
 | User Profile      | `/api/auth/users/me/`                     | GET, PUT, PATCH | Retrieve or update the user's profile.           | Authenticated users only |
 
 
+#### For user registration
+
+```json
+{
+	"email": "email@example.com",
+	"password":"password",
+	"username":"username"
+}
+```
+
+#### For login
+
+```json
+{
+	"username": "username",
+	"password": "password"
+}
+```
 ## Contributing
 
 Contributions are welcome! If you have any suggestions or find any issues, please create a GitHub issue or submit a pull request.
