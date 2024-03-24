@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from .serializers import UserSerializer, MenuSerializer, BookingSerializer
 from .models import MenuTable, Booking, User
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from .permissions import IsOwnerOrAdmin, IsAdminOrStaffOrOwner
 
 
@@ -29,9 +29,8 @@ class MenuItemView(ListCreateAPIView):
     def get_permissions(self):
         permission_classes = []
         if self.request.method == 'POST':
-            print('damn')
             # if the request it's a post only a user can access
-            permission_classes = [IsAdminUser]
+            permission_classes = [IsOwnerOrAdmin]
         # It iterates over each class in permission_classes, instantiates it,
         # and adds the instance to the list.
         return [permission() for permission in permission_classes]

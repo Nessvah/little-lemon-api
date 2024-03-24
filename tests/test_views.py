@@ -2,7 +2,7 @@ from django.test import TestCase
 from rest_framework.test import APIClient
 from rest_framework import status
 from restaurant.models import MenuTable, Booking
-
+from
 
 class MenuItemViewTestCase(TestCase):
     def setUp(self):
