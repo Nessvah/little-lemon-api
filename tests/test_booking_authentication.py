@@ -11,7 +11,8 @@ class BookingAuthenticationTest(TestCase):
         self.client = APIClient()
         self.user = User.objects.create_user(username='timothy', password='password123')
         self.other_user = User.objects.create_user(username='aline', password='aline123')
-        self.booking = Booking.objects.create(user=self.user, booking_date='2024-03-25', no_of_guests='3')
+        self.booking = Booking.objects.create(user=self.user, name='self.user.name', booking_date='2024-03-25',
+                                              no_of_guests='3')
 
     def test_get_bookings_authenticated(self):
         """

@@ -1,12 +1,58 @@
-django admin user -> admin
-django admin password -> admin@123!
+# Little Lemon Restaurant API
 
-## Django admin 
+This project is an API built using Django REST Framework for managing table bookings for the Little Lemon restaurant. The API allows users to perform CRUD (Create, Read, Update, Delete) operations on booking data, enabling the restaurant to efficiently manage reservations.
 
-User -> admin
-Password -> admin@123!
+## Features
 
-## Endpoints for menu items and bookings
+- **Authentication**: Users can authenticate using username and password to access protected endpoints.
+- **Booking Management**: Users can create, view, update, and delete bookings.
+- **Permissions**: Different permission levels are enforced to ensure that only authorized users can perform certain actions (e.g., only administrators can delete bookings).
+- **Validation**: Input data is validated to ensure it meets specified criteria (e.g., date and time format for bookings).
+- **API Documentation**: The API provides documentation for endpoints, request methods, and required parameters.
+- **Database Integration**: The API integrates with a MySQL database to store booking information.
+
+## Installation
+
+To run this project locally, follow these steps:
+
+1. Clone the repository:
+```bash
+git clone https://github.com/Nessvah/little-lemon-api.git
+```
+2. Navigate to the project directory:
+```bash
+cd little-lemon-api
+```
+
+3. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+4. Run migrations to create the database schema:
+```bash
+python manage.py migrate
+```
+
+5. Create a superuser for accessing the Django admin interface and test the permissions for admins:
+```bash
+python manage.py createsuperuser
+```
+
+6. Start the development server:
+```bash
+python manage.py runserver
+```
+
+7. Access the API at `http://localhost:800/api/`
+8. Access the Django admin interface at `http://localhost:8000/admin/` and log in using the credentials you created in step 5.
+
+## Usage
+
+- **Authentication**: Before accessing protected endpoints, users need to authenticate by providing their username and password.
+- **Testing**: Run tests using `python manage.py test tests`.
+
+### Endpoints for menu items and bookings
 
 | Endpoint           | URL                                      | Method     | Admin Permissions | User Permissions            |
 |--------------------|------------------------------------------|------------|-------------------|-----------------------------|
@@ -21,15 +67,23 @@ Password -> admin@123!
 | Update Menu Item   | `/api/restaurant/menu/<menu_item_id>/`   | PUT, PATCH | Full access       | No permission (only admins) |
 | Delete Menu Item   | `/api/restaurant/menu/<menu_item_id>/`   | DELETE     | Full access       | No permission (only admins) |
 
-## Endpoints for authentication
+### Endpoints for authentication
 
 | Endpoint          | URL                                       | Method          | Description                                      | Permissions              |
 |-------------------|-------------------------------------------|-----------------|--------------------------------------------------|--------------------------|
 | User Registration | `/api/auth/users/`                        | POST            | Register a new user account.                     | Public access            |
 | User Login        | `/api/auth/token/login/`                  | POST            | Obtain a JWT authentication token.               | Public access            |
-| User Logout       | `/api/auth/token/logout/`                 | POST            | Invalidate the current JWT authentication token. | Authenticated users only |
 | User Profile      | `/api/auth/users/me/`                     | GET, PUT, PATCH | Retrieve or update the user's profile.           | Authenticated users only |
-| Change Password   | `/api/auth/users/set_password/`           | POST            | Change the user's password.                      | Authenticated users only |
-| Reset Password    | `/api/auth/users/reset_password/`         | POST            | Request a password reset email.                  | Public access            |
-| Set New Password  | `/api/auth/users/reset_password_confirm/` | POST            | Set a new password after receiving reset token.  | Public access            |
 
+
+## Contributing
+
+Contributions are welcome! If you have any suggestions or find any issues, please create a GitHub issue or submit a pull request.
+
+## License
+
+This project is licensed under the  GNU GENERAL PUBLIC LICENSE - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+Special thanks to [Meta Back-End Developer](https://www.coursera.org/professional-certificates/meta-back-end-developer) for providing guidance and resources.
