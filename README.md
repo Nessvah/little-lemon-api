@@ -38,6 +38,18 @@ CREATE USER 'admindjango'@'localhost' IDENTIFIED BY 'password';
 GRANT ALL PRIVILEGES ON littlelemon.* TO 'admindjango'@'localhost';
 ```
 
+- Make a .env for your environment variables and follow the env.example:
+- 
+```text
+DB_USER=user
+DB_PASSWORD=password
+DB_PORT=3306 // default is 3306 change if otherwise
+DB_DATABASE=databaseName
+DB_HOST=localhost  // default localhost change if otherwise
+```
+
+Otherwise, just set it up on the settings in the DATABASES with your own values
+
 - Run migrations to create the database schema:
 ```bash
 python manage.py migrate
