@@ -126,6 +126,11 @@ python manage.py runserver
 	"password": "password"
 }
 ```
+
+### Endpoint for testing static files:
+
+`http://127.0.0.1:8000/api/restaurant/`
+
 ## Contributing
 
 Contributions are welcome! If you have any suggestions or find any issues, please create a GitHub issue or submit a pull request.
